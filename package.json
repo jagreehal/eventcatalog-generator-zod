@@ -1,0 +1,90 @@
+{
+  "name": "eventcatalog-generator-zod",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "sideEffects": false,
+  "description": "Zod generator for EventCatalog. Scans your codebase for Zod event schemas and documents them in EventCatalog.",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:dist": "node -e \"const pkg = require('./dist/index.js'); if (typeof pkg.default !== 'function') process.exit(1)\" && node --input-type=module -e \"import generator from './dist/index.mjs'; if (typeof generator !== 'function') process.exit(1)\"",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm format:diff && pnpm typecheck && pnpm test",
+    "prepack": "pnpm check && pnpm build && pnpm test:dist",
+    "format": "prettier --write .",
+    "format:diff": "prettier --list-different .",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@11.5.1",
+  "keywords": [
+    "eventcatalog",
+    "eventcatalog-generator",
+    "zod",
+    "event-driven-architecture"
+  ],
+  "license": "MIT",
+  "author": "Jag Reehal",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./define-event": {
+      "import": {
+        "types": "./dist/define-event.d.mts",
+        "default": "./dist/define-event.mjs"
+      },
+      "require": {
+        "types": "./dist/define-event.d.ts",
+        "default": "./dist/define-event.js"
+      }
+    }
+  },
+  "dependencies": {
+    "@eventcatalog/sdk": "^2.26.3",
+    "chalk": "4.1.2",
+    "jiti": "^2.7.0",
+    "semver": "^7.8.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.31.1",
+    "@types/node": "^24.13.3",
+    "@types/semver": "^7.7.1",
+    "prettier": "^3.9.6",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vite": "8.1.5",
+    "vitest": "^4.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jagreehal/eventcatalog-generator-zod.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jagreehal/eventcatalog-generator-zod/issues"
+  },
+  "homepage": "https://github.com/jagreehal/eventcatalog-generator-zod#readme"
+}

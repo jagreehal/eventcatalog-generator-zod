@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+src/test/catalog
+src/test/catalog-*
+.DS_Store
+*.tgz
