@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@eventcatalog/sdk": "^2.26.3",
-    "chalk": "4.1.2",
+    "chalk": "6.0.1",
     "jiti": "^2.7.0",
     "semver": "^7.8.5",
     "zod": "^4.4.3"
